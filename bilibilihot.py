@@ -8,6 +8,8 @@ import requests
 import json
 from urllib import parse
 import math
+from datetime import datetime
+
 
 def BvToAv(Bv):
     # 1.去除Bv号前的"Bv"字符
@@ -209,12 +211,14 @@ if __name__ == '__main__':
     is_tomorrow =get_bilibili_info()
     url = 'https://service-etcne5bg-1254304775.gz.apigw.tencentcs.com/release/Wecom_push'
     HEADERS = {'Content-Type': 'application/x-www-form-urlencoded'}
+    dt = datetime.now()
+    time = dt.strftime('%Y-%m-%d')
     # 'application/x-www-form-urlencoded'
     # 'application/json;charset=utf-8'
     FormData={
     'sendkey': 'akb48',
     'msg_type': 'text',
-    'msg': is_tomorrow
+    'msg': f'科技区热榜-{time}'+'\n'+is_tomorrow
 
 }
 
